@@ -1,0 +1,9 @@
+Host phphp
+	User sou
+	Port 22
+	HostName 203.216.140.87
+	KeepAlive yes
+  ServerAliveInterval 60
+
+Host *
+	ServerAliveInterval 60
