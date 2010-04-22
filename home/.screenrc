@@ -1,0 +1,16 @@
+
+deflogin on
+autodetach on
+
+escape ^Tt
+
+vbell on
+vbell_msg "   Wuff  ----  Wuff!!  "
+
+termcap kterm hs@
+terminfo kterm hs@
+bind w windowlist -b
+hardstatus alwayslastline I%wI
+defhstatus I^En:^EtI
+shell -$SHELL
+startup_message off
