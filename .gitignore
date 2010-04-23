@@ -1,0 +1,17 @@
+*.o
+*.lo
+*.la
+#*#
+.*.rej
+*.rej
+.*~
+*~
+.#*
+.DS_Store
+*.sw[po]
+*.log
+*.sqlite3
+*.sqlite
+*.db
+auto-save-list/*
+backup/*
