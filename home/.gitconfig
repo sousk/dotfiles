@@ -1,0 +1,32 @@
+[user]
+	name = sou
+	email = sou.phphp@gmail.com
+[core]
+	excludesfile = /Users/sou/.gitignore
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	w = whatchanged
+	b = branch
+	md = submodule
+[color] 
+	diff = auto
+	interactive = auto
+	status = auto
+	branch = auto
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[mergetool]
+	keepBackup = true
+	trustExitCode = false
+[merge]
+	tool = extMerge
+[mergetool "extMerge"]
+	cmd = extMerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+# [diff]
+# 	external = extDiff

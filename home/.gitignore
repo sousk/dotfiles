@@ -1,0 +1,12 @@
+.svn
+*.o
+*.lo
+*.la
+.*~
+._*
+.DS_Store
+*.pbxuser
+*.mode*
+*.perspective*
+*.tmp
+*.mine
