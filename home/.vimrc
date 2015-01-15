@@ -28,13 +28,23 @@ else
   set backupdir=~/.vim/backup
 endif
 set directory=~/.vim/swap
-set history=50		" keep 50 lines of command line history
+set history=1000		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
+set showmode
 set incsearch		" do incremental searching
+set gcr=a:blinkon0      " disable cursor blink
+set visualbell          " no sounds
+set autoread            " reload files changed outside vim
+set backspace=indent,eol,start  "Allow backspace in insert mode
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
+"turn on syntax highlighting
+syntax on
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -118,7 +128,7 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/kido.soshi/.vim/bundle'))
+call neobundle#begin(expand("$HOME/.vim/bundle"))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -157,4 +167,3 @@ NeoBundle 'Shougo/vimfiler.vim'
 
 colorscheme hybrid
 set guifont=Menlo:h14
-
