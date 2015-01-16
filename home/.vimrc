@@ -141,9 +141,10 @@ NeoBundle 'Shougo/vimproc.vim', {
 \    },
 \ }
 NeoBundle 'Shougo/vimfiler.vim'
+" NeoBundle 'Shougo/neocomplete.vim'
 
 " You can specify revision/branch/tag.
-NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+NeoBundle 'Shougo/vimshell.vim'
 
 " Required:
 call neobundle#end()
