@@ -141,10 +141,18 @@ NeoBundle 'Shougo/vimproc.vim', {
 \    },
 \ }
 NeoBundle 'Shougo/vimfiler.vim'
+NeoBundle 'kannokanno/previm'
 " NeoBundle 'Shougo/neocomplete.vim'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell.vim'
+
+" required by OmniSharp
+" NeoBundle 'tpope/vim-dispatch'
+" NeoBundle 'kien/ctrlp.vim'
+" NeoBundle 'scrooloose/syntastic'
+
+NeoBundle 'editorconfig/editorconfig-vim'
 
 " Required:
 call neobundle#end()
@@ -157,7 +165,14 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
-"VimFiler--------------------------------------
+" PreVim
+let g:previm_open_cmd='open -a Safari'
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+
+" VimFiler--------------------------------------
 nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
 autocmd! FileType vimfiler call g:my_vimfiler_settings()
 function! g:my_vimfiler_settings()
