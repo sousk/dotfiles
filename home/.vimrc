@@ -65,6 +65,11 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" reset anyway
+" type ':verbose :setlocal filetype?' to get information 
+filetype off
+filetype plugin indent off
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
@@ -72,7 +77,7 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+  " filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -149,8 +154,12 @@ NeoBundle 'Shougo/vimshell.vim'
 
 " required by OmniSharp
 " NeoBundle 'tpope/vim-dispatch'
-" NeoBundle 'kien/ctrlp.vim'
 " NeoBundle 'scrooloose/syntastic'
+
+" TypeScript
+NeoBundle 'leafgarland/typescript-vim.git'
+NeoBundle 'clausreinke/typescript-tools.git'
+NeoBundle 'jason0x43/vim-js-indent'
 
 NeoBundle 'editorconfig/editorconfig-vim'
 
@@ -158,6 +167,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 call neobundle#end()
 
 " Required:
+" but indent has been broken on typescript-vim
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
@@ -199,3 +209,5 @@ call unite#custom_action('file', 'my_vsplit', s:my_action)
 colorscheme hybrid
 set guifont=Menlo:h14
 
+
+let g:EditorConfig_verbose=1
