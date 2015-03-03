@@ -148,6 +148,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'kannokanno/previm'
 " NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'scrooloose/nerdcommenter'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell.vim'
