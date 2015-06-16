@@ -155,16 +155,16 @@ NeoBundle 'scrooloose/nerdcommenter'
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell.vim'
 
-" required by OmniSharp
-" NeoBundle 'tpope/vim-dispatch'
-" NeoBundle 'scrooloose/syntastic'
-
 " TypeScript
 NeoBundle 'leafgarland/typescript-vim.git'
 NeoBundle 'clausreinke/typescript-tools.git'
 NeoBundle 'jason0x43/vim-js-indent'
+" JavaScript
+NeoBundleLazy 'othree/yajs', {'autoload':{'filetypes':['javascript']}}
 
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'Shougo/neocomplete'
+NeoBundle 'scrooloose/syntastic'
 
 " Required:
 call neobundle#end()
@@ -185,14 +185,42 @@ augroup PrevimSettings
     autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
 
+" Syntactic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+
+" NeoComplete
+if neobundle#is_installed('neocomplete')
+	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#enable_ignore_case = 1
+	let g:neocomplete#enable_smart_case = 1
+	if !exists('g:neocomplete#keyword_patterns')
+		let g:neocomplete#keyword_patterns = {}
+	endif
+	let g:neocomplete#keyword_patterns._ = '\h\w*'
+	inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+endif
+
+
+"-----------------------------------------------
+
 " VimFiler--------------------------------------
 nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
 autocmd! FileType vimfiler call g:my_vimfiler_settings()
-function! g:my_vimfiler_settings()
-  nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
-  nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
-  nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
-endfunction
+let g:vimfiler_as_default_explorer = 1
+" function! g:my_vimfiler_settings()
+" nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
+" nnoremap <buffer>s          :call vimfiler#mappings#do_action('my_split')<Cr>
+" nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
+" endfunction
 
 let s:my_action = { 'is_selectable' : 1 }
 function! s:my_action.func(candidates)
@@ -208,6 +236,10 @@ function! s:my_action.func(candidates)
 endfunction
 call unite#custom_action('file', 'my_vsplit', s:my_action)
 "End VimFiler----------------------------------
+
+" JavaScript -------------------------------------
+autocmd BufNewFile,BufRead *.{es6,es} set filetype=javascript
+" End JavaScript ---------------------------------
 
 colorscheme hybrid
 set guifont=Menlo:h14
