@@ -8,12 +8,17 @@ env:
     es6: true
 ecmaFeatures:
     jsx: true 
+    modules: true
 plugins: 
     - react
+parser:
+    babel-eslint
 rules:
-   eqeqeq: 0
-   quotes: 0
-   comma-spacing: 0
-   no-use-before-define: 0
-   no-trailing-spaces: 0
+    // for babel-eslint
+    strict: 0
+    eqeqeq: 0
+    quotes: 0
+    comma-spacing: 0
+    no-use-before-define: 0
+    no-trailing-spaces: 0
 
