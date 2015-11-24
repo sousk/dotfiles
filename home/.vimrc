@@ -166,6 +166,10 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'scrooloose/syntastic'
 
+NeoBundle 'tyru/caw.vim'
+nmap <C-K> <Plug>(caw:i:toggle)
+vmap <C-K> <Plug>(caw:i:toggle)
+
 " Required:
 call neobundle#end()
 
