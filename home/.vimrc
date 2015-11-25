@@ -190,6 +190,7 @@ augroup PrevimSettings
 augroup END
 
 " Syntactic
+" type :SyntasticInfo to get stats of the file you're editing
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -243,7 +244,15 @@ call unite#custom_action('file', 'my_vsplit', s:my_action)
 
 " JavaScript -------------------------------------
 autocmd BufNewFile,BufRead *.{es6,es} set filetype=javascript
+
+" Web -------------------------------------
+autocmd BufNewFile,BufRead *.{es} set filetype=javascript
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " End JavaScript ---------------------------------
+
+" very magic
+nnoremap / /\v
 
 colorscheme hybrid
 set guifont=Menlo:h14
