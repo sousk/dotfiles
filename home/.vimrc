@@ -154,6 +154,7 @@ NeoBundle 'scrooloose/nerdcommenter'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'chase/vim-ansible-yaml'
 
 " TypeScript
 NeoBundle 'leafgarland/typescript-vim.git'
