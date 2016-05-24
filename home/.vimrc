@@ -132,12 +132,11 @@ call neobundle#begin(expand("$HOME/.vim/bundle"))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'mac' : 'make -f make_mac.mak',
@@ -147,29 +146,42 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'kannokanno/previm'
-" NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'stephpy/vim-yaml'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'chase/vim-ansible-yaml'
 
 " TypeScript
-NeoBundle 'leafgarland/typescript-vim.git'
-NeoBundle 'clausreinke/typescript-tools.git'
-NeoBundle 'jason0x43/vim-js-indent'
+" NeoBundle 'jason0x43/vim-js-indent'
 " JavaScript
-NeoBundleLazy 'othree/yajs', {'autoload':{'filetypes':['javascript']}}
+" NeoBundleLazy 'othree/yajs', {'autoload':{'filetypes':['javascript']}}
+
+NeoBundle 'Chiel92/vim-autoformat'
 
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'Shougo/neocomplete'
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'scrooloose/syntastic'
 
 NeoBundle 'tyru/caw.vim'
 nmap <C-K> <Plug>(caw:i:toggle)
 vmap <C-K> <Plug>(caw:i:toggle)
+
+" HTML
+NeoBundle 'mattn/emmet-vim'
+
+" Golang
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'garyburd/go-explorer'
+NeoBundle 'fatih/vim-go'
+
+" Color Scheme
+NeoBundle "cocopon/iceberg.vim"
 
 " Required:
 call neobundle#end()
@@ -202,6 +214,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 
+au BufWrite * :Autoformat
+
 " NeoComplete
 if neobundle#is_installed('neocomplete')
 	let g:neocomplete#enable_at_startup = 1
@@ -215,12 +229,16 @@ if neobundle#is_installed('neocomplete')
 	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 endif
 
+" vim-go
+let g:go_fmt_command = "goimports"
+let g:tagbar_width = 30
+let g:tagbar_autoshowtag = 1
 
 "-----------------------------------------------
 
 " VimFiler--------------------------------------
 nnoremap <F2> :VimFiler -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
-autocmd! FileType vimfiler call g:my_vimfiler_settings()
+" autocmd! FileType vimfiler call g:my_vimfiler_settings()
 let g:vimfiler_as_default_explorer = 1
 " function! g:my_vimfiler_settings()
 " nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
@@ -244,7 +262,7 @@ call unite#custom_action('file', 'my_vsplit', s:my_action)
 "End VimFiler----------------------------------
 
 " JavaScript -------------------------------------
-autocmd BufNewFile,BufRead *.{es6,es} set filetype=javascript
+autocmd BufNewFile,BufRead *.{es6,es,js} set filetype=javascript
 
 " Web -------------------------------------
 autocmd BufNewFile,BufRead *.{es} set filetype=javascript
@@ -255,8 +273,10 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " very magic
 nnoremap / /\v
 
-colorscheme hybrid
+"colorscheme hybrid
+colorscheme iceberg
+"colorscheme molokai
 set guifont=Menlo:h14
 
 
-let g:EditorConfig_verbose=1
+let g:EditorConfig_verbose=0

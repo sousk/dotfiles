@@ -86,5 +86,5 @@ source $HOME/.local_profile
 # export GOENVTARGET=$HOME/local/bin
 # export GOENVHOME=$HOME/workspace
 export GOROOT=`go env GOROOT`
-export GOPATH=$HOME/gocode
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
